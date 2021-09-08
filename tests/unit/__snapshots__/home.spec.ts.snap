@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home.vue test the List component by adding a new list item 1`] = `
+<ul>
+  <li>one</li>
+  <li>two</li>
+  <li>three</li>
+  <li>Four</li>
+</ul>
+`;
+
+exports[`Home.vue test the add button 1`] = `"one,two,three,new todo"`;
