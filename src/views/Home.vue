@@ -1,6 +1,8 @@
 <template>
   <div class="page-container">
-    <h1>Todo List</h1>
+    <h1 v-colorDirective="{ color: 'white', background: 'green' }">
+      {{ "Todo List" | Capitalize }}
+    </h1>
     <section class="todo">
       <input
         type="text"
@@ -10,10 +12,7 @@
         @keyup.enter="appendNewItem"
       />
       <button @click="appendNewItem">Add</button>
-      <Lists class="todo-list" :todoList="todoList" v-slot="{msg}">
-        <p>hello</p>
-        {{msg}}
-      </Lists>
+      <Lists class="todo-list" :todoList="todoList"> </Lists>
     </section>
   </div>
 </template>
@@ -21,10 +20,21 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Lists from "../components/Lists.vue";
+import colorDirective from "../directives/colorDirective";
 
 @Component({
   components: {
-    Lists
+    Lists,
+  },
+  directives: {
+    colorDirective,
+  },
+  filters: {
+    Capitalize(value: string) {
+      return value.replace(/(^\w{1})|(\s+\w{1})/g, (letter: string) =>
+        letter.toUpperCase()
+      );
+    },
   },
 })
 export default class TodoList extends Vue {
@@ -38,8 +48,8 @@ export default class TodoList extends Vue {
 
   // event
   appendNewItem(): void {
-      this.todoList.push(this.newItem);
-      this.newItem = "";
-    }
+    this.todoList.push(this.newItem);
+    this.newItem = "";
   }
+}
 </script>
