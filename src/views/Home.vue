@@ -13,6 +13,7 @@
       />
       <button @click="appendNewItem">Add</button>
       <Lists class="todo-list" :todoList="todoList"> </Lists>
+      <router-link class="goto-tab" to="/tab">Goto Tab</router-link>
     </section>
   </div>
 </template>
